@@ -1,0 +1,7 @@
+text=readLines('input_big5.txt',encoding='BIG-5')
+input=paste("<?xml version='1.0' ?><wordsegmentation version='0.1'><option showcategory='1' /><authentication username='corpustag' password='ntucorpus' /><text>",text,"</text></wordsegmentation>")
+con=socketConnection('140.109.19.104',1501,blocking=T)
+writeLines(input,con)
+output=readLines(con,1)
+close(con)
+write(output,'output_big5.txt')
